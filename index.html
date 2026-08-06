@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Clément Jannaire — Développeur web &amp; designer UX/UI</title>
+<meta name="description" content="Développeur web et designer UX/UI. Je conçois et je code des produits web, de l'interface à la mise en production. Six projets déployés en Next.js, React et TypeScript.">
+<meta name="author" content="Clément Jannaire">
+<meta name="theme-color" content="#f7f5f0" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0b0b0d" media="(prefers-color-scheme: dark)">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Clément Jannaire — Développeur web &amp; designer UX/UI">
+<meta property="og:description" content="Je conçois et je code des produits web, de l'interface à la mise en production. Chaque projet est déployé et fonctionnel.">
+<meta property="og:locale" content="fr_FR">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="assets/css/style.css">
+
+<script>
+  // Applied before first paint so the correct theme never flashes.
+  try {
+    const saved = localStorage.getItem('cj-theme');
+    const dark = saved ? saved === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
+    document.documentElement.dataset.theme = dark ? 'dark' : 'light';
+  } catch (e) {}
+</script>
+</head>
+<body>
+
+<a class="skip-link" href="#projets">Aller au contenu</a>
+
+<!-- ── LOADER ─────────────────────────────────────────────────────────── -->
+<div class="loader" id="loader" aria-hidden="true">
+  <div class="loader__inner">
+    <span class="loader__name">Clément Jannaire</span>
+    <span class="loader__count" id="loaderCount">00</span>
+  </div>
+  <div class="loader__bar"><i id="loaderBar"></i></div>
+</div>
+
+<!-- ── AMBIENT LAYERS ─────────────────────────────────────────────────── -->
+<canvas class="aurora" id="aurora" aria-hidden="true"></canvas>
+<div class="grain" aria-hidden="true"></div>
+<div class="cursor" id="cursor" aria-hidden="true">
+  <span class="cursor__dot"></span>
+  <span class="cursor__ring"><span class="cursor__label">Voir</span></span>
+</div>
+<div class="progress" id="progress" aria-hidden="true"></div>
+
+<!-- ── NAV ────────────────────────────────────────────────────────────── -->
+<header class="nav" id="nav">
+  <a class="nav__brand" href="#top" data-magnetic>
+    <span class="nav__mark" aria-hidden="true">CJ</span>
+    <span class="nav__name">Clément Jannaire</span>
+  </a>
+
+  <nav class="nav__links" aria-label="Navigation principale">
+    <a href="#projets" data-nav-link>Projets</a>
+    <a href="#apropos" data-nav-link>À propos</a>
+    <a href="#contact" data-nav-link>Contact</a>
+  </nav>
+
+  <button class="theme-toggle" id="themeToggle" type="button" data-magnetic
+          aria-label="Changer de thème" title="Changer de thème">
+    <svg viewBox="0 0 24 24" aria-hidden="true" class="theme-toggle__icon">
+      <circle cx="12" cy="12" r="5" class="ti-core"/>
+      <g class="ti-rays">
+        <line x1="12" y1="1.5" x2="12" y2="4"/><line x1="12" y1="20" x2="12" y2="22.5"/>
+        <line x1="1.5" y1="12" x2="4" y2="12"/><line x1="20" y1="12" x2="22.5" y2="12"/>
+        <line x1="4.5" y1="4.5" x2="6.2" y2="6.2"/><line x1="17.8" y1="17.8" x2="19.5" y2="19.5"/>
+        <line x1="4.5" y1="19.5" x2="6.2" y2="17.8"/><line x1="17.8" y1="6.2" x2="19.5" y2="4.5"/>
+      </g>
+    </svg>
+  </button>
+</header>
+
+<main id="top">
+
+  <!-- ── HERO ─────────────────────────────────────────────────────────── -->
+  <section class="hero" id="hero">
+    <div class="hero__grid" aria-hidden="true"></div>
+
+    <div class="hero__inner">
+      <p class="badge" data-reveal>
+        <span class="badge__pulse" aria-hidden="true"></span>
+        Disponible pour de nouveaux projets
+      </p>
+
+      <h1 class="hero__title" data-split-lines>
+        <span>Développeur web</span>
+        <span>&amp; designer <em>UX/UI</em>.</span>
+      </h1>
+
+      <p class="hero__role" data-reveal>
+        <span class="hero__role-label">$</span>
+        <span class="scramble" id="scramble" data-words="conception d'interfaces|développement front-end|intégration &amp; déploiement|design systems">conception d'interfaces</span>
+        <span class="caret" aria-hidden="true"></span>
+      </p>
+
+      <p class="hero__lead" data-reveal>
+        Je conçois et je code des produits web, de l'interface à la mise en production.
+        Chaque projet ci-dessous est <strong>déployé et fonctionnel</strong> — pas une maquette.
+      </p>
+
+      <div class="hero__cta" data-reveal>
+        <a class="btn btn--solid" href="#projets" data-magnetic>
+          <span>Voir les projets</span>
+          <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1v14M8 15l-5-5M8 15l5-5"/></svg>
+        </a>
+        <a class="btn btn--ghost" href="#contact" data-magnetic>
+          <span>Me contacter</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="hero__stats" data-reveal>
+      <div class="stat"><b data-count="6" data-pad="2">0</b><span>Projets déployés</span></div>
+      <div class="stat"><b data-count="20" data-suffix="+">0</b><span>Technologies</span></div>
+      <div class="stat"><b data-count="100" data-suffix="%">0</b><span>Design &amp; code maison</span></div>
+    </div>
+
+    <div class="hero__scroll" aria-hidden="true"><span></span>Défiler</div>
+  </section>
+
+  <!-- ── MARQUEE ──────────────────────────────────────────────────────── -->
+  <div class="marquee" id="marquee" aria-hidden="true">
+    <div class="marquee__track" id="marqueeTrack">
+      <div class="marquee__group">
+        <span>React</span><i>◆</i><span>Next.js</span><i>◆</i><span>TypeScript</span><i>◆</i>
+        <span>Tailwind CSS</span><i>◆</i><span>Node.js</span><i>◆</i><span>PostgreSQL</span><i>◆</i>
+        <span>Prisma</span><i>◆</i><span>Drizzle</span><i>◆</i><span>Framer Motion</span><i>◆</i>
+        <span>Figma</span><i>◆</i><span>Docker</span><i>◆</i><span>Vercel</span><i>◆</i>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── PROJETS ──────────────────────────────────────────────────────── -->
+  <section class="section" id="projets">
+    <div class="section__head">
+      <h2 class="section__title" data-split-words>Projets</h2>
+      <p class="section__meta">
+        <span class="dot" aria-hidden="true"></span>
+        6 sites en production · mis à jour au fur et à mesure
+      </p>
+    </div>
+
+    <div class="projects">
+
+      <article class="card" data-reveal data-tilt>
+        <div class="card__glow" aria-hidden="true"></div>
+        <div class="card__body">
+          <header class="card__top">
+            <span class="card__index" aria-hidden="true">01</span>
+            <span class="card__status"><i aria-hidden="true"></i>Live</span>
+          </header>
+          <h3 class="card__title">
+            <a href="https://to-do-list-five-green-12.vercel.app" target="_blank" rel="noopener noreferrer"
+               class="card__link" data-cursor="Voir">To-Do gamifiée</a>
+          </h3>
+          <p class="card__desc">Gestionnaire de tâches qui transforme la productivité en jeu : expérience, niveaux et séries. Rendu serveur avec l'App Router et persistance PostgreSQL.</p>
+          <ul class="chips">
+            <li>Next.js 16</li><li>React 19</li><li>Prisma</li><li>PostgreSQL</li><li>Tailwind 4</li><li>TypeScript</li>
+          </ul>
+          <footer class="card__foot">
+            <span class="card__url">to-do-list-five-green-12.vercel.app</span>
+            <a class="card__repo" href="https://github.com/Clement77720/ToDoList" target="_blank" rel="noopener noreferrer">
+              <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0a8 8 0 0 0-2.5 15.6c.4.07.55-.17.55-.38v-1.34c-2.23.48-2.7-1.07-2.7-1.07-.36-.93-.89-1.17-.89-1.17-.73-.5.05-.49.05-.49.81.06 1.23.83 1.23.83.72 1.23 1.88.87 2.34.67.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.6 7.6 0 0 1 4 0c1.53-1.03 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.28.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48v2.2c0 .21.15.46.55.38A8 8 0 0 0 8 0Z"/></svg>
+              ToDoList
+            </a>
+          </footer>
+        </div>
+      </article>
+
+      <article class="card" data-reveal data-tilt>
+        <div class="card__glow" aria-hidden="true"></div>
+        <div class="card__body">
+          <header class="card__top">
+            <span class="card__index" aria-hidden="true">02</span>
+            <span class="card__status"><i aria-hidden="true"></i>Live</span>
+          </header>
+          <h3 class="card__title">
+            <a href="https://cse-medibio-gamma.vercel.app" target="_blank" rel="noopener noreferrer"
+               class="card__link" data-cursor="Voir">CSE Medibio</a>
+          </h3>
+          <p class="card__desc">Plateforme de réservation de chambres pour le comité d'entreprise d'un groupe médical. Monorepo front React + API Node, avec authentification et back-office.</p>
+          <ul class="chips">
+            <li>React 18</li><li>Vite</li><li>TypeScript</li><li>Node.js</li><li>PostgreSQL</li><li>Docker</li>
+          </ul>
+          <footer class="card__foot">
+            <span class="card__url">cse-medibio-gamma.vercel.app</span>
+            <span class="card__repo card__repo--private" title="Dépôt privé">
+              <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4.5 7V4.8a3.5 3.5 0 1 1 7 0V7h.5a1.5 1.5 0 0 1 1.5 1.5v5A1.5 1.5 0 0 1 12 15H4a1.5 1.5 0 0 1-1.5-1.5v-5A1.5 1.5 0 0 1 4 7h.5Zm1.5 0h4V4.8a2 2 0 1 0-4 0V7Z"/></svg>
+              Dépôt privé
+            </span>
+          </footer>
+        </div>
+      </article>
+
+      <article class="card" data-reveal data-tilt>
+        <div class="card__glow" aria-hidden="true"></div>
+        <div class="card__body">
+          <header class="card__top">
+            <span class="card__index" aria-hidden="true">03</span>
+            <span class="card__status"><i aria-hidden="true"></i>Live</span>
+          </header>
+          <h3 class="card__title">
+            <a href="https://codexrift.app" target="_blank" rel="noopener noreferrer"
+               class="card__link" data-cursor="Voir">CodexRift</a>
+          </h3>
+          <p class="card__desc">Plateforme de cartes de jeu : collection, construction de decks et comptes joueurs. Sessions gérées par NextAuth, données sur Postgres serverless.</p>
+          <ul class="chips">
+            <li>Next.js 16</li><li>React 19</li><li>Drizzle ORM</li><li>Neon</li><li>NextAuth</li><li>Tailwind 4</li>
+          </ul>
+          <footer class="card__foot">
+            <span class="card__url">codexrift.app</span>
+            <span class="card__repo card__repo--private" title="Dépôt privé">
+              <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4.5 7V4.8a3.5 3.5 0 1 1 7 0V7h.5a1.5 1.5 0 0 1 1.5 1.5v5A1.5 1.5 0 0 1 12 15H4a1.5 1.5 0 0 1-1.5-1.5v-5A1.5 1.5 0 0 1 4 7h.5Zm1.5 0h4V4.8a2 2 0 1 0-4 0V7Z"/></svg>
+              Dépôt privé
+            </span>
+          </footer>
+        </div>
+      </article>
+
+      <article class="card" data-reveal data-tilt>
+        <div class="card__glow" aria-hidden="true"></div>
+        <div class="card__body">
+          <header class="card__top">
+            <span class="card__index" aria-hidden="true">04</span>
+            <span class="card__status"><i aria-hidden="true"></i>Live</span>
+          </header>
+          <h3 class="card__title">
+            <a href="https://site-atem-autos.vercel.app" target="_blank" rel="noopener noreferrer"
+               class="card__link" data-cursor="Voir">ATEM Autos</a>
+          </h3>
+          <p class="card__desc">Site vitrine d'un garage automobile : carte interactive, formulaire de contact validé côté client et serveur, e-mails transactionnels et défilement fluide.</p>
+          <ul class="chips">
+            <li>Next.js 16</li><li>Framer Motion</li><li>Lenis</li><li>Leaflet</li><li>Zod</li><li>Resend</li>
+          </ul>
+          <footer class="card__foot">
+            <span class="card__url">site-atem-autos.vercel.app</span>
+            <span class="card__repo card__repo--private" title="Dépôt privé">
+              <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4.5 7V4.8a3.5 3.5 0 1 1 7 0V7h.5a1.5 1.5 0 0 1 1.5 1.5v5A1.5 1.5 0 0 1 12 15H4a1.5 1.5 0 0 1-1.5-1.5v-5A1.5 1.5 0 0 1 4 7h.5Zm1.5 0h4V4.8a2 2 0 1 0-4 0V7Z"/></svg>
+              Dépôt privé
+            </span>
+          </footer>
+        </div>
+      </article>
+
+      <article class="card" data-reveal data-tilt>
+        <div class="card__glow" aria-hidden="true"></div>
+        <div class="card__body">
+          <header class="card__top">
+            <span class="card__index" aria-hidden="true">05</span>
+            <span class="card__status"><i aria-hidden="true"></i>Live</span>
+          </header>
+          <h3 class="card__title">
+            <a href="https://jnr-studio.vercel.app" target="_blank" rel="noopener noreferrer"
+               class="card__link" data-cursor="Voir">JNR Studio</a>
+          </h3>
+          <p class="card__desc">Site vitrine d'un studio créatif. Direction artistique affirmée, transitions de page et animations au défilement travaillées au détail près.</p>
+          <ul class="chips">
+            <li>Next.js 14</li><li>React 18</li><li>Framer Motion</li><li>CSS Modules</li>
+          </ul>
+          <footer class="card__foot">
+            <span class="card__url">jnr-studio.vercel.app</span>
+            <span class="card__repo card__repo--private" title="Dépôt privé">
+              <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4.5 7V4.8a3.5 3.5 0 1 1 7 0V7h.5a1.5 1.5 0 0 1 1.5 1.5v5A1.5 1.5 0 0 1 12 15H4a1.5 1.5 0 0 1-1.5-1.5v-5A1.5 1.5 0 0 1 4 7h.5Zm1.5 0h4V4.8a2 2 0 1 0-4 0V7Z"/></svg>
+              Dépôt privé
+            </span>
+          </footer>
+        </div>
+      </article>
+
+      <article class="card" data-reveal data-tilt>
+        <div class="card__glow" aria-hidden="true"></div>
+        <div class="card__body">
+          <header class="card__top">
+            <span class="card__index" aria-hidden="true">06</span>
+            <span class="card__status"><i aria-hidden="true"></i>Live</span>
+          </header>
+          <h3 class="card__title">
+            <a href="https://azur-paris.vercel.app" target="_blank" rel="noopener noreferrer"
+               class="card__link" data-cursor="Voir">Azur Paris</a>
+          </h3>
+          <p class="card__desc">Site vitrine d'une marque parisienne. Mise en page éditoriale épurée, typographie soignée et apparitions animées au défilement.</p>
+          <ul class="chips">
+            <li>Next.js 14</li><li>React 18</li><li>Framer Motion</li>
+          </ul>
+          <footer class="card__foot">
+            <span class="card__url">azur-paris.vercel.app</span>
+            <span class="card__repo card__repo--private" title="Dépôt privé">
+              <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4.5 7V4.8a3.5 3.5 0 1 1 7 0V7h.5a1.5 1.5 0 0 1 1.5 1.5v5A1.5 1.5 0 0 1 12 15H4a1.5 1.5 0 0 1-1.5-1.5v-5A1.5 1.5 0 0 1 4 7h.5Zm1.5 0h4V4.8a2 2 0 1 0-4 0V7Z"/></svg>
+              Dépôt privé
+            </span>
+          </footer>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ── À PROPOS ─────────────────────────────────────────────────────── -->
+  <section class="about" id="apropos">
+    <div class="about__inner">
+      <div class="about__aside">
+        <h2 class="section__title" data-split-words>À propos</h2>
+        <p class="about__kicker">Design&nbsp;+&nbsp;code, par la même personne.</p>
+      </div>
+
+      <div class="about__main">
+        <p class="about__lead" data-reveal>
+          Je travaille à l'intersection du design et du code : je conçois l'interface dans Figma,
+          puis je la développe moi-même — du prototype jusqu'au déploiement en production.
+        </p>
+        <p class="about__text" data-reveal>
+          Concrètement, ça veut dire pas d'aller-retour perdu entre maquette et intégration :
+          ce qui est dessiné est réalisable, et ce qui est livré ressemble à ce qui a été validé.
+          Je porte une attention particulière à l'accessibilité, aux performances et aux détails
+          d'animation qui rendent une interface agréable.
+        </p>
+
+        <div class="skills">
+          <div class="skills__col" data-reveal>
+            <h3>Front-end</h3>
+            <ul><li>React</li><li>Next.js</li><li>TypeScript</li><li>JavaScript</li><li>HTML &amp; CSS</li><li>Tailwind CSS</li></ul>
+          </div>
+          <div class="skills__col" data-reveal>
+            <h3>Back-end &amp; données</h3>
+            <ul><li>Node.js</li><li>PostgreSQL</li><li>Prisma</li><li>Drizzle ORM</li><li>NextAuth</li><li>API REST</li></ul>
+          </div>
+          <div class="skills__col" data-reveal>
+            <h3>Design</h3>
+            <ul><li>Figma</li><li>Design systems</li><li>Prototypage</li><li>UI / UX</li><li>Accessibilité</li></ul>
+          </div>
+          <div class="skills__col" data-reveal>
+            <h3>Outils</h3>
+            <ul><li>Git &amp; GitHub</li><li>Vercel</li><li>Docker</li><li>Framer Motion</li><li>Vite</li></ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CONTACT ──────────────────────────────────────────────────────── -->
+  <section class="contact" id="contact">
+    <p class="contact__eyebrow" data-reveal>Contact</p>
+
+    <h2 class="contact__title" data-split-words>Parlons de votre projet.</h2>
+
+    <div class="contact__mail" data-reveal>
+      <a class="mail" href="mailto:clement.jannaire@gmail.com" data-hover-letters data-cursor="Écrire">clement.jannaire@gmail.com</a>
+      <button class="copy" id="copyMail" type="button" data-magnetic
+              data-mail="clement.jannaire@gmail.com" aria-label="Copier l'adresse e-mail">
+        <svg viewBox="0 0 16 16" aria-hidden="true"><rect x="5.5" y="5.5" width="8" height="8" rx="1.5"/><path d="M10.5 5.5v-1a1.5 1.5 0 0 0-1.5-1.5H4a1.5 1.5 0 0 0-1.5 1.5v5A1.5 1.5 0 0 0 4 11h1"/></svg>
+        <span>Copier</span>
+      </button>
+    </div>
+
+    <div class="contact__links" data-reveal>
+      <a class="linkline" href="https://github.com/Clement77720" target="_blank" rel="noopener noreferrer" data-magnetic>
+        <span>GitHub</span>
+        <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 12L12 4M12 4H5.5M12 4v6.5"/></svg>
+      </a>
+      <a class="linkline" href="https://www.linkedin.com/in/cl%C3%A9ment-jannaire" target="_blank" rel="noopener noreferrer" data-magnetic>
+        <span>LinkedIn</span>
+        <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 12L12 4M12 4H5.5M12 4v6.5"/></svg>
+      </a>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <span>© <span id="year">2026</span> Clément Jannaire</span>
+  <span class="footer__clock">Paris · <time id="clock">--:--:--</time></span>
+  <a class="footer__top" href="#top" data-magnetic>Haut de page ↑</a>
+</footer>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<!-- Film grain — inlined so it costs no extra request. -->
+<svg width="0" height="0" aria-hidden="true" focusable="false" style="position:absolute">
+  <filter id="grainFilter">
+    <feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="3" stitchTiles="stitch"/>
+    <feColorMatrix type="saturate" values="0"/>
+  </filter>
+</svg>
+
+<script src="assets/js/main.js" defer></script>
+</body>
+</html>
