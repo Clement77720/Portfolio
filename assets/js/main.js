@@ -187,52 +187,7 @@
     });
   }
 
-  /* ── Curseur personnalisé + effet magnétique ──────────────────────── */
-
-  function initCursor() {
-    const cursor = $('#cursor');
-    if (!cursor || !finePointer || reduceMotion) return;
-
-    document.body.classList.add('has-cursor');
-    const dot   = $('.cursor__dot', cursor);
-    const ring  = $('.cursor__ring', cursor);
-    const label = $('.cursor__label', cursor);
-
-    let px = innerWidth / 2, py = innerHeight / 2;   // position réelle du pointeur
-    let rx = px, ry = py;                            // position retardée de l'anneau
-
-    addEventListener('pointermove', (e) => { px = e.clientX; py = e.clientY; }, { passive: true });
-
-    const loop = () => {
-      rx = lerp(rx, px, 0.16);
-      ry = lerp(ry, py, 0.16);
-      dot.style.transform  = `translate(${px}px, ${py}px) translate(-50%, -50%)`;
-      ring.style.transform = `translate(${rx}px, ${ry}px) translate(-50%, -50%)`;
-      requestAnimationFrame(loop);
-    };
-    requestAnimationFrame(loop);
-
-    // États au survol.
-    const hoverables = 'a, button, [data-magnetic], .skills__col li, .marquee__group span';
-    document.addEventListener('pointerover', (e) => {
-      const labelled = e.target.closest('[data-cursor]');
-      if (labelled) {
-        label.textContent = labelled.dataset.cursor;
-        cursor.classList.add('is-label');
-        cursor.classList.remove('is-hover');
-      } else if (e.target.closest(hoverables)) {
-        cursor.classList.add('is-hover');
-      }
-    });
-    document.addEventListener('pointerout', (e) => {
-      if (e.target.closest('[data-cursor]')) cursor.classList.remove('is-label');
-      else if (e.target.closest(hoverables)) cursor.classList.remove('is-hover');
-    });
-
-    // Le curseur disparaît quand la souris quitte la fenêtre.
-    document.addEventListener('mouseleave', () => { cursor.style.opacity = '0'; });
-    document.addEventListener('mouseenter', () => { cursor.style.opacity = '1'; });
-  }
+  /* ── Effet magnétique ─────────────────────────────────────────────── */
 
   function initMagnetic() {
     if (!finePointer || reduceMotion) return;
@@ -585,7 +540,6 @@
     initReveal();
     initLoader();
     initAurora();
-    initCursor();
     initMagnetic();
     initTilt();
     initHeroSpotlight();
