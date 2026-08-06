@@ -182,49 +182,6 @@ a { color: var(--accent); text-decoration: none; }
   pointer-events: none;
 }
 
-/* Curseur maison — masqué par défaut, activé en JS si pointeur fin. */
-.cursor { display: none; }
-
-body.has-cursor { cursor: none; }
-body.has-cursor a,
-body.has-cursor button { cursor: none; }
-
-body.has-cursor .cursor {
-  display: block;
-  position: fixed; top: 0; left: 0; z-index: 350;
-  pointer-events: none;
-}
-.cursor__dot,
-.cursor__ring {
-  position: absolute; top: 0; left: 0;
-  border-radius: 50%;
-  transform: translate(-50%, -50%);
-}
-.cursor__dot {
-  width: 6px; height: 6px;
-  background: var(--accent);
-  transition: opacity .2s, width .25s var(--ease-out), height .25s var(--ease-out);
-}
-.cursor__ring {
-  display: grid; place-content: center;
-  width: 34px; height: 34px;
-  border: 1px solid var(--accent);
-  transition: width .35s var(--ease-out), height .35s var(--ease-out),
-              background-color .35s var(--ease-out), border-color .35s;
-}
-.cursor__label {
-  font-family: var(--font-mono); font-size: 11px; letter-spacing: .06em;
-  color: var(--accent-ink); opacity: 0;
-  transition: opacity .2s; white-space: nowrap;
-}
-
-/* Survol d'un élément interactif : l'anneau grossit et se remplit. */
-.cursor.is-hover .cursor__ring { width: 52px; height: 52px; background: var(--accent); }
-.cursor.is-hover .cursor__dot  { opacity: 0; }
-.cursor.is-label .cursor__ring { width: 74px; height: 74px; background: var(--accent); }
-.cursor.is-label .cursor__label { opacity: 1; }
-.cursor.is-label .cursor__dot  { opacity: 0; }
-
 /* ── 5. Navigation ──────────────────────────────────────────────────── */
 
 .nav {
@@ -813,6 +770,4 @@ a.card__repo:hover { color: var(--accent); }
   .line-inner, .word-inner { transform: none; }
   .aurora, .grain, .hero__grid { display: none; }
   .marquee__track { transform: none !important; }
-  body.has-cursor { cursor: auto; }
-  body.has-cursor .cursor { display: none; }
 }

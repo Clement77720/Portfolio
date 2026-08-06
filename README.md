@@ -29,7 +29,6 @@ robots.txt
 |---|---|
 | Écran de chargement (compteur + rideau) | `initLoader` |
 | Aurore animée sur canvas, réactive au pointeur | `initAurora` |
-| Curseur personnalisé (anneau retardé, libellé « Voir ») | `initCursor` |
 | Boutons magnétiques | `initMagnetic` |
 | Cartes projet : inclinaison 3D, projecteur, parallaxe du contenu | `initTilt` |
 | Grille de points révélée par un projecteur | `initHeroSpotlight` |
@@ -46,8 +45,8 @@ Chaque bloc est indépendant : si l'un échoue, les autres continuent de tourner
 
 ## Accessibilité et performances
 
-- `prefers-reduced-motion` est respecté : animations, aurore, grain, curseur
-  personnalisé et bandeau défilant sont désactivés, le contenu reste visible.
+- `prefers-reduced-motion` est respecté : animations, aurore, grain et bandeau
+  défilant sont désactivés, le contenu reste visible.
 - Le contenu est écrit dans le HTML (pas injecté en JS) : il reste lisible
   sans JavaScript et indexable par les moteurs de recherche.
 - Navigation au clavier : lien d'évitement, styles `:focus-visible`.
