@@ -4,18 +4,19 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Clément Jannaire — Développeur web &amp; designer UX/UI</title>
-<meta name="description" content="Développeur web et designer UX/UI. Je conçois et je code des produits web, de l'interface à la mise en production. Six projets déployés en Next.js, React et TypeScript.">
+<meta name="description" content="Développeur web et designer UX/UI, fondateur de JNR Studio. Je conçois et je code des produits web, de l'interface à la mise en production. 20 réalisations en ligne.">
 <meta name="author" content="Clément Jannaire">
 <meta name="theme-color" content="#f7f5f0" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#0b0b0d" media="(prefers-color-scheme: dark)">
 
 <meta property="og:type" content="website">
 <meta property="og:title" content="Clément Jannaire — Développeur web &amp; designer UX/UI">
-<meta property="og:description" content="Je conçois et je code des produits web, de l'interface à la mise en production. Chaque projet est déployé et fonctionnel.">
+<meta property="og:description" content="Je conçois et je code des produits web, de l'interface à la mise en production. Fondateur de JNR Studio.">
 <meta property="og:locale" content="fr_FR">
 <meta name="twitter:card" content="summary_large_image">
 
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="me" href="https://jnr-studio.vercel.app/">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500&family=IBM+Plex+Mono:wght@400;500&display=swap">
@@ -23,7 +24,10 @@
 <link rel="stylesheet" href="assets/css/style.css">
 
 <script>
-  // Applied before first paint so the correct theme never flashes.
+  // Marque la page comme « JS actif » : le rideau de chargement n'existe que
+  // dans ce cas, sinon un visiteur sans JavaScript resterait bloqué derrière.
+  document.documentElement.classList.add('js');
+  // Appliqué avant le premier rendu pour ne pas faire clignoter le thème.
   try {
     const saved = localStorage.getItem('cj-theme');
     const dark = saved ? saved === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
@@ -58,6 +62,7 @@
 
   <nav class="nav__links" aria-label="Navigation principale">
     <a href="#projets" data-nav-link>Projets</a>
+    <a href="#studio" data-nav-link>Studio</a>
     <a href="#apropos" data-nav-link>À propos</a>
     <a href="#contact" data-nav-link>Contact</a>
   </nav>
@@ -101,12 +106,14 @@
 
       <p class="hero__lead" data-reveal>
         Je conçois et je code des produits web, de l'interface à la mise en production.
-        Chaque projet ci-dessous est <strong>déployé et fonctionnel</strong> — pas une maquette.
+        En indépendant, je porte aussi <a class="inline-link" href="#studio">JNR&nbsp;Studio</a>,
+        mon activité de création de sites sur-mesure. Chaque réalisation ci-dessous est
+        <strong>en ligne et fonctionnelle</strong> — pas une maquette.
       </p>
 
       <div class="hero__cta" data-reveal>
         <a class="btn btn--solid" href="#projets" data-magnetic>
-          <span>Voir les projets</span>
+          <span>Voir les réalisations</span>
           <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1v14M8 15l-5-5M8 15l5-5"/></svg>
         </a>
         <a class="btn btn--ghost" href="#contact" data-magnetic>
@@ -116,8 +123,8 @@
     </div>
 
     <div class="hero__stats" data-reveal>
-      <div class="stat"><b data-count="6" data-pad="2">0</b><span>Projets déployés</span></div>
-      <div class="stat"><b data-count="20" data-suffix="+">0</b><span>Technologies</span></div>
+      <div class="stat"><b data-count="20">0</b><span>Réalisations en ligne</span></div>
+      <div class="stat"><b data-count="6" data-pad="2">0</b><span>Projets React / Next.js</span></div>
       <div class="stat"><b data-count="100" data-suffix="%">0</b><span>Design &amp; code maison</span></div>
     </div>
 
@@ -132,6 +139,7 @@
         <span>Tailwind CSS</span><i>◆</i><span>Node.js</span><i>◆</i><span>PostgreSQL</span><i>◆</i>
         <span>Prisma</span><i>◆</i><span>Drizzle</span><i>◆</i><span>Framer Motion</span><i>◆</i>
         <span>Figma</span><i>◆</i><span>Docker</span><i>◆</i><span>Vercel</span><i>◆</i>
+        <span>SEO</span><i>◆</i><span>Photographie</span><i>◆</i>
       </div>
     </div>
   </div>
@@ -139,30 +147,39 @@
   <!-- ── PROJETS ──────────────────────────────────────────────────────── -->
   <section class="section" id="projets">
     <div class="section__head">
-      <h2 class="section__title" data-split-words>Projets</h2>
+      <h2 class="section__title" data-split-words>Réalisations</h2>
       <p class="section__meta">
         <span class="dot" aria-hidden="true"></span>
-        6 sites en production · mis à jour au fur et à mesure
+        <span id="projectCount">20</span> réalisations en ligne · produits chez
+        <a href="https://jnr-studio.vercel.app/" target="_blank" rel="noopener noreferrer">JNR&nbsp;Studio</a>
+        et en stage chez Klark
       </p>
     </div>
 
-    <div class="projects">
+    <div class="filters" id="filters" role="group" aria-label="Filtrer les réalisations">
+      <button type="button" class="filter is-active" data-filter="all" aria-pressed="true">Tous <b>20</b></button>
+      <button type="button" class="filter" data-filter="app" aria-pressed="false">Applications <b>3</b></button>
+      <button type="button" class="filter" data-filter="vitrine" aria-pressed="false">Sites vitrine <b>3</b></button>
+      <button type="button" class="filter" data-filter="ecommerce" aria-pressed="false">E-commerce <b>1</b></button>
+      <button type="button" class="filter" data-filter="landing" aria-pressed="false">Landing pages <b>10</b></button>
+      <button type="button" class="filter" data-filter="article" aria-pressed="false">Articles <b>3</b></button>
+    </div>
 
-      <article class="card" data-reveal data-tilt>
+    <div class="projects" id="projects">
+
+      <!-- ── Applications ── -->
+      <article class="card" data-cat="app" data-reveal data-tilt>
         <div class="card__glow" aria-hidden="true"></div>
         <div class="card__body">
           <header class="card__top">
             <span class="card__index" aria-hidden="true">01</span>
-            <span class="card__status"><i aria-hidden="true"></i>Live</span>
+            <span class="card__tag"><i aria-hidden="true"></i>Application</span>
           </header>
           <h3 class="card__title">
-            <a href="https://to-do-list-five-green-12.vercel.app" target="_blank" rel="noopener noreferrer"
-               class="card__link">To-Do gamifiée</a>
+            <a href="https://to-do-list-five-green-12.vercel.app" target="_blank" rel="noopener noreferrer" class="card__link">To-Do gamifiée</a>
           </h3>
           <p class="card__desc">Gestionnaire de tâches qui transforme la productivité en jeu : expérience, niveaux et séries. Rendu serveur avec l'App Router et persistance PostgreSQL.</p>
-          <ul class="chips">
-            <li>Next.js 16</li><li>React 19</li><li>Prisma</li><li>PostgreSQL</li><li>Tailwind 4</li><li>TypeScript</li>
-          </ul>
+          <ul class="chips"><li>Next.js 16</li><li>React 19</li><li>Prisma</li><li>PostgreSQL</li><li>Tailwind 4</li><li>TypeScript</li></ul>
           <footer class="card__foot">
             <span class="card__url">to-do-list-five-green-12.vercel.app</span>
             <a class="card__repo" href="https://github.com/Clement77720/ToDoList" target="_blank" rel="noopener noreferrer">
@@ -173,46 +190,18 @@
         </div>
       </article>
 
-      <article class="card" data-reveal data-tilt>
+      <article class="card" data-cat="app" data-reveal data-tilt>
         <div class="card__glow" aria-hidden="true"></div>
         <div class="card__body">
           <header class="card__top">
             <span class="card__index" aria-hidden="true">02</span>
-            <span class="card__status"><i aria-hidden="true"></i>Live</span>
+            <span class="card__tag"><i aria-hidden="true"></i>Application</span>
           </header>
           <h3 class="card__title">
-            <a href="https://cse-medibio-gamma.vercel.app" target="_blank" rel="noopener noreferrer"
-               class="card__link">CSE Medibio</a>
-          </h3>
-          <p class="card__desc">Plateforme de réservation de chambres pour le comité d'entreprise d'un groupe médical. Monorepo front React + API Node, avec authentification et back-office.</p>
-          <ul class="chips">
-            <li>React 18</li><li>Vite</li><li>TypeScript</li><li>Node.js</li><li>PostgreSQL</li><li>Docker</li>
-          </ul>
-          <footer class="card__foot">
-            <span class="card__url">cse-medibio-gamma.vercel.app</span>
-            <span class="card__repo card__repo--private" title="Dépôt privé">
-              <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4.5 7V4.8a3.5 3.5 0 1 1 7 0V7h.5a1.5 1.5 0 0 1 1.5 1.5v5A1.5 1.5 0 0 1 12 15H4a1.5 1.5 0 0 1-1.5-1.5v-5A1.5 1.5 0 0 1 4 7h.5Zm1.5 0h4V4.8a2 2 0 1 0-4 0V7Z"/></svg>
-              Dépôt privé
-            </span>
-          </footer>
-        </div>
-      </article>
-
-      <article class="card" data-reveal data-tilt>
-        <div class="card__glow" aria-hidden="true"></div>
-        <div class="card__body">
-          <header class="card__top">
-            <span class="card__index" aria-hidden="true">03</span>
-            <span class="card__status"><i aria-hidden="true"></i>Live</span>
-          </header>
-          <h3 class="card__title">
-            <a href="https://codexrift.app" target="_blank" rel="noopener noreferrer"
-               class="card__link">CodexRift</a>
+            <a href="https://codexrift.app" target="_blank" rel="noopener noreferrer" class="card__link">CodexRift</a>
           </h3>
           <p class="card__desc">Plateforme de cartes de jeu : collection, construction de decks et comptes joueurs. Sessions gérées par NextAuth, données sur Postgres serverless.</p>
-          <ul class="chips">
-            <li>Next.js 16</li><li>React 19</li><li>Drizzle ORM</li><li>Neon</li><li>NextAuth</li><li>Tailwind 4</li>
-          </ul>
+          <ul class="chips"><li>Next.js 16</li><li>React 19</li><li>Drizzle ORM</li><li>Neon</li><li>NextAuth</li><li>Tailwind 4</li></ul>
           <footer class="card__foot">
             <span class="card__url">codexrift.app</span>
             <span class="card__repo card__repo--private" title="Dépôt privé">
@@ -223,21 +212,60 @@
         </div>
       </article>
 
-      <article class="card" data-reveal data-tilt>
+      <article class="card" data-cat="app" data-reveal data-tilt>
+        <div class="card__glow" aria-hidden="true"></div>
+        <div class="card__body">
+          <header class="card__top">
+            <span class="card__index" aria-hidden="true">03</span>
+            <span class="card__tag"><i aria-hidden="true"></i>Application</span>
+          </header>
+          <h3 class="card__title">
+            <a href="https://cse-medibio-gamma.vercel.app" target="_blank" rel="noopener noreferrer" class="card__link">CSE Medibio</a>
+          </h3>
+          <p class="card__desc">Plateforme de réservation de chambres pour le comité d'entreprise d'un groupe médical. Monorepo front React + API Node, avec authentification et back-office.</p>
+          <ul class="chips"><li>React 18</li><li>Vite</li><li>TypeScript</li><li>Node.js</li><li>PostgreSQL</li><li>Docker</li></ul>
+          <footer class="card__foot">
+            <span class="card__url">cse-medibio-gamma.vercel.app</span>
+            <span class="card__repo card__repo--private" title="Dépôt privé">
+              <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4.5 7V4.8a3.5 3.5 0 1 1 7 0V7h.5a1.5 1.5 0 0 1 1.5 1.5v5A1.5 1.5 0 0 1 12 15H4a1.5 1.5 0 0 1-1.5-1.5v-5A1.5 1.5 0 0 1 4 7h.5Zm1.5 0h4V4.8a2 2 0 1 0-4 0V7Z"/></svg>
+              Dépôt privé
+            </span>
+          </footer>
+        </div>
+      </article>
+
+      <!-- ── Sites vitrine ── -->
+      <article class="card" data-cat="vitrine" data-reveal data-tilt>
         <div class="card__glow" aria-hidden="true"></div>
         <div class="card__body">
           <header class="card__top">
             <span class="card__index" aria-hidden="true">04</span>
-            <span class="card__status"><i aria-hidden="true"></i>Live</span>
+            <span class="card__tag"><i aria-hidden="true"></i>Site vitrine</span>
           </header>
           <h3 class="card__title">
-            <a href="https://site-atem-autos.vercel.app" target="_blank" rel="noopener noreferrer"
-               class="card__link">ATEM Autos</a>
+            <a href="https://klark.app" target="_blank" rel="noopener noreferrer" class="card__link">Klark.app</a>
+          </h3>
+          <p class="card__desc">Site vitrine de Klark, suite d'outils business pour entrepreneurs (Fakture, Prospektor, Kaisse…). Design dark moderne, navigation multi-produits, tunnel d'inscription.</p>
+          <ul class="chips"><li>HTML</li><li>CSS</li><li>JavaScript</li><li>Design dark</li></ul>
+          <footer class="card__foot">
+            <span class="card__url">klark.app</span>
+            <span class="card__repo card__repo--client">Klark</span>
+          </footer>
+        </div>
+      </article>
+
+      <article class="card" data-cat="vitrine" data-reveal data-tilt>
+        <div class="card__glow" aria-hidden="true"></div>
+        <div class="card__body">
+          <header class="card__top">
+            <span class="card__index" aria-hidden="true">05</span>
+            <span class="card__tag"><i aria-hidden="true"></i>Site vitrine</span>
+          </header>
+          <h3 class="card__title">
+            <a href="https://site-atem-autos.vercel.app" target="_blank" rel="noopener noreferrer" class="card__link">ATEM Autos</a>
           </h3>
           <p class="card__desc">Site vitrine d'un garage automobile : carte interactive, formulaire de contact validé côté client et serveur, e-mails transactionnels et défilement fluide.</p>
-          <ul class="chips">
-            <li>Next.js 16</li><li>Framer Motion</li><li>Lenis</li><li>Leaflet</li><li>Zod</li><li>Resend</li>
-          </ul>
+          <ul class="chips"><li>Next.js 16</li><li>Framer Motion</li><li>Lenis</li><li>Leaflet</li><li>Zod</li><li>Resend</li></ul>
           <footer class="card__foot">
             <span class="card__url">site-atem-autos.vercel.app</span>
             <span class="card__repo card__repo--private" title="Dépôt privé">
@@ -248,46 +276,38 @@
         </div>
       </article>
 
-      <article class="card" data-reveal data-tilt>
-        <div class="card__glow" aria-hidden="true"></div>
-        <div class="card__body">
-          <header class="card__top">
-            <span class="card__index" aria-hidden="true">05</span>
-            <span class="card__status"><i aria-hidden="true"></i>Live</span>
-          </header>
-          <h3 class="card__title">
-            <a href="https://jnr-studio.vercel.app" target="_blank" rel="noopener noreferrer"
-               class="card__link">JNR Studio</a>
-          </h3>
-          <p class="card__desc">Site vitrine d'un studio créatif. Direction artistique affirmée, transitions de page et animations au défilement travaillées au détail près.</p>
-          <ul class="chips">
-            <li>Next.js 14</li><li>React 18</li><li>Framer Motion</li><li>CSS Modules</li>
-          </ul>
-          <footer class="card__foot">
-            <span class="card__url">jnr-studio.vercel.app</span>
-            <span class="card__repo card__repo--private" title="Dépôt privé">
-              <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4.5 7V4.8a3.5 3.5 0 1 1 7 0V7h.5a1.5 1.5 0 0 1 1.5 1.5v5A1.5 1.5 0 0 1 12 15H4a1.5 1.5 0 0 1-1.5-1.5v-5A1.5 1.5 0 0 1 4 7h.5Zm1.5 0h4V4.8a2 2 0 1 0-4 0V7Z"/></svg>
-              Dépôt privé
-            </span>
-          </footer>
-        </div>
-      </article>
-
-      <article class="card" data-reveal data-tilt>
+      <article class="card" data-cat="vitrine" data-reveal data-tilt>
         <div class="card__glow" aria-hidden="true"></div>
         <div class="card__body">
           <header class="card__top">
             <span class="card__index" aria-hidden="true">06</span>
-            <span class="card__status"><i aria-hidden="true"></i>Live</span>
+            <span class="card__tag"><i aria-hidden="true"></i>Site vitrine</span>
           </header>
           <h3 class="card__title">
-            <a href="https://azur-paris.vercel.app" target="_blank" rel="noopener noreferrer"
-               class="card__link">Azur Paris</a>
+            <a href="https://jnr-studio.vercel.app/" target="_blank" rel="noopener noreferrer" class="card__link">JNR Studio</a>
           </h3>
-          <p class="card__desc">Site vitrine d'une marque parisienne. Mise en page éditoriale épurée, typographie soignée et apparitions animées au défilement.</p>
-          <ul class="chips">
-            <li>Next.js 14</li><li>React 18</li><li>Framer Motion</li>
-          </ul>
+          <p class="card__desc">Le site de mon activité indépendante : services, tarifs, portfolio client et pages légales. Direction artistique affirmée, transitions de page et thème clair/sombre.</p>
+          <ul class="chips"><li>Next.js 14</li><li>React 18</li><li>Framer Motion</li><li>next-intl</li></ul>
+          <footer class="card__foot">
+            <span class="card__url">jnr-studio.vercel.app</span>
+            <span class="card__repo card__repo--client">Projet perso</span>
+          </footer>
+        </div>
+      </article>
+
+      <!-- ── E-commerce ── -->
+      <article class="card" data-cat="ecommerce" data-reveal data-tilt>
+        <div class="card__glow" aria-hidden="true"></div>
+        <div class="card__body">
+          <header class="card__top">
+            <span class="card__index" aria-hidden="true">07</span>
+            <span class="card__tag"><i aria-hidden="true"></i>E-commerce</span>
+          </header>
+          <h3 class="card__title">
+            <a href="https://azur-paris.vercel.app/" target="_blank" rel="noopener noreferrer" class="card__link">Azur Paris</a>
+          </h3>
+          <p class="card__desc">Boutique e-commerce Azur Paris : catalogue produits, design élégant et expérience d'achat fluide. Mise en page éditoriale et apparitions animées au défilement.</p>
+          <ul class="chips"><li>Next.js 14</li><li>React 18</li><li>Framer Motion</li></ul>
           <footer class="card__foot">
             <span class="card__url">azur-paris.vercel.app</span>
             <span class="card__repo card__repo--private" title="Dépôt privé">
@@ -298,6 +318,295 @@
         </div>
       </article>
 
+      <!-- ── Landing pages ── -->
+      <article class="card" data-cat="landing" data-reveal data-tilt>
+        <div class="card__glow" aria-hidden="true"></div>
+        <div class="card__body">
+          <header class="card__top">
+            <span class="card__index" aria-hidden="true">08</span>
+            <span class="card__tag"><i aria-hidden="true"></i>Landing page</span>
+          </header>
+          <h3 class="card__title">
+            <a href="https://jnr-studio.vercel.app/klark/prospektor/" target="_blank" rel="noopener noreferrer" class="card__link">Klark Prospektor v3</a>
+          </h3>
+          <p class="card__desc">Landing de Prospektor, l'outil de prospection Klark. Trouvez, scorez et convertissez vos prospects — design dark animé, comparatif et tunnel de conversion.</p>
+          <ul class="chips"><li>HTML</li><li>CSS</li><li>JavaScript</li></ul>
+          <footer class="card__foot">
+            <span class="card__url">/klark/prospektor</span>
+            <span class="card__repo card__repo--client">Klark</span>
+          </footer>
+        </div>
+      </article>
+
+      <article class="card" data-cat="landing" data-reveal data-tilt>
+        <div class="card__glow" aria-hidden="true"></div>
+        <div class="card__body">
+          <header class="card__top">
+            <span class="card__index" aria-hidden="true">09</span>
+            <span class="card__tag"><i aria-hidden="true"></i>Landing page</span>
+          </header>
+          <h3 class="card__title">
+            <a href="https://jnr-studio.vercel.app/klark/index/" target="_blank" rel="noopener noreferrer" class="card__link">Klark — Hub produit</a>
+          </h3>
+          <p class="card__desc">Page centrale listant l'ensemble des outils Klark (Fakture, Prospektor, Kaisse, Kalendar…). Design dark avec navigation inter-produits et CTA de téléchargement.</p>
+          <ul class="chips"><li>HTML</li><li>CSS</li><li>JavaScript</li></ul>
+          <footer class="card__foot">
+            <span class="card__url">/klark/index</span>
+            <span class="card__repo card__repo--client">Klark</span>
+          </footer>
+        </div>
+      </article>
+
+      <article class="card" data-cat="landing" data-reveal data-tilt>
+        <div class="card__glow" aria-hidden="true"></div>
+        <div class="card__body">
+          <header class="card__top">
+            <span class="card__index" aria-hidden="true">10</span>
+            <span class="card__tag"><i aria-hidden="true"></i>Landing page</span>
+          </header>
+          <h3 class="card__title">
+            <a href="https://jnr-studio.vercel.app/klark/klark-landing-fr/" target="_blank" rel="noopener noreferrer" class="card__link">Klark — Landing FR</a>
+          </h3>
+          <p class="card__desc">Landing B2B principale en français : pitch produit, fonctionnalités clés, social proof et formulaire de capture de leads.</p>
+          <ul class="chips"><li>HTML</li><li>CSS</li><li>JavaScript</li></ul>
+          <footer class="card__foot">
+            <span class="card__url">/klark/klark-landing-fr</span>
+            <span class="card__repo card__repo--client">Klark</span>
+          </footer>
+        </div>
+      </article>
+
+      <article class="card" data-cat="landing" data-reveal data-tilt>
+        <div class="card__glow" aria-hidden="true"></div>
+        <div class="card__body">
+          <header class="card__top">
+            <span class="card__index" aria-hidden="true">11</span>
+            <span class="card__tag"><i aria-hidden="true"></i>Landing page</span>
+          </header>
+          <h3 class="card__title">
+            <a href="https://jnr-studio.vercel.app/klark/klark-landing-en/" target="_blank" rel="noopener noreferrer" class="card__link">Klark — Landing EN</a>
+          </h3>
+          <p class="card__desc">Version anglaise de la landing Klark pour l'expansion internationale. Adaptée au marché anglophone, même tunnel de conversion.</p>
+          <ul class="chips"><li>HTML</li><li>CSS</li><li>JavaScript</li><li>i18n</li></ul>
+          <footer class="card__foot">
+            <span class="card__url">/klark/klark-landing-en</span>
+            <span class="card__repo card__repo--client">Klark</span>
+          </footer>
+        </div>
+      </article>
+
+      <article class="card" data-cat="landing" data-reveal data-tilt>
+        <div class="card__glow" aria-hidden="true"></div>
+        <div class="card__body">
+          <header class="card__top">
+            <span class="card__index" aria-hidden="true">12</span>
+            <span class="card__tag"><i aria-hidden="true"></i>Landing page</span>
+          </header>
+          <h3 class="card__title">
+            <a href="https://getklark.app/facturation-electronique" target="_blank" rel="noopener noreferrer" class="card__link">Fakture — Facturation 2026</a>
+          </h3>
+          <p class="card__desc">Landing conformité facturation électronique 2026. Mise en avant du badge officiel, photo terrain et call-to-action de téléchargement.</p>
+          <ul class="chips"><li>HTML</li><li>CSS</li><li>JavaScript</li></ul>
+          <footer class="card__foot">
+            <span class="card__url">getklark.app/facturation-electronique</span>
+            <span class="card__repo card__repo--client">Klark</span>
+          </footer>
+        </div>
+      </article>
+
+      <article class="card" data-cat="landing" data-reveal data-tilt>
+        <div class="card__glow" aria-hidden="true"></div>
+        <div class="card__body">
+          <header class="card__top">
+            <span class="card__index" aria-hidden="true">13</span>
+            <span class="card__tag"><i aria-hidden="true"></i>Landing page</span>
+          </header>
+          <h3 class="card__title">
+            <a href="https://jnr-studio.vercel.app/klark/freelance/" target="_blank" rel="noopener noreferrer" class="card__link">Guide Freelance 2026</a>
+          </h3>
+          <p class="card__desc">Lead magnet téléchargeable : guide de rentabilité pour freelances. Page longue avec bénéfices, aperçu du guide et formulaire de capture.</p>
+          <ul class="chips"><li>HTML</li><li>CSS</li><li>JavaScript</li></ul>
+          <footer class="card__foot">
+            <span class="card__url">/klark/freelance</span>
+            <span class="card__repo card__repo--client">Klark</span>
+          </footer>
+        </div>
+      </article>
+
+      <article class="card" data-cat="landing" data-reveal data-tilt>
+        <div class="card__glow" aria-hidden="true"></div>
+        <div class="card__body">
+          <header class="card__top">
+            <span class="card__index" aria-hidden="true">14</span>
+            <span class="card__tag"><i aria-hidden="true"></i>Landing page</span>
+          </header>
+          <h3 class="card__title">
+            <a href="https://jnr-studio.vercel.app/klark/e-commerce/" target="_blank" rel="noopener noreferrer" class="card__link">E-commerce — Revenus ×18</a>
+          </h3>
+          <p class="card__desc">Étude de cas e-commerce : comment multiplier par 18 ses revenus e-mail. Storytelling data-driven avec chiffres clés et CTA de téléchargement.</p>
+          <ul class="chips"><li>HTML</li><li>CSS</li><li>JavaScript</li></ul>
+          <footer class="card__foot">
+            <span class="card__url">/klark/e-commerce</span>
+            <span class="card__repo card__repo--client">Klark</span>
+          </footer>
+        </div>
+      </article>
+
+      <article class="card" data-cat="landing" data-reveal data-tilt>
+        <div class="card__glow" aria-hidden="true"></div>
+        <div class="card__body">
+          <header class="card__top">
+            <span class="card__index" aria-hidden="true">15</span>
+            <span class="card__tag"><i aria-hidden="true"></i>Landing page</span>
+          </header>
+          <h3 class="card__title">
+            <a href="https://jnr-studio.vercel.app/klark/checklist/" target="_blank" rel="noopener noreferrer" class="card__link">UX Audit — Checklist</a>
+          </h3>
+          <p class="card__desc">Checklist interactive d'audit UX pour dashboards e-commerce. Mise en avant des points critiques et formulaire de capture.</p>
+          <ul class="chips"><li>HTML</li><li>CSS</li><li>JavaScript</li><li>UX</li></ul>
+          <footer class="card__foot">
+            <span class="card__url">/klark/checklist</span>
+            <span class="card__repo card__repo--client">Klark</span>
+          </footer>
+        </div>
+      </article>
+
+      <article class="card" data-cat="landing" data-reveal data-tilt>
+        <div class="card__glow" aria-hidden="true"></div>
+        <div class="card__body">
+          <header class="card__top">
+            <span class="card__index" aria-hidden="true">16</span>
+            <span class="card__tag"><i aria-hidden="true"></i>Landing page</span>
+          </header>
+          <h3 class="card__title">
+            <a href="https://jnr-studio.vercel.app/klark/privileges/" target="_blank" rel="noopener noreferrer" class="card__link">Privilèges — Coûts business</a>
+          </h3>
+          <p class="card__desc">Landing du programme Privilèges Klark : réduction des coûts business, liste des avantages partenaires et formulaire d'inscription.</p>
+          <ul class="chips"><li>HTML</li><li>CSS</li><li>JavaScript</li></ul>
+          <footer class="card__foot">
+            <span class="card__url">/klark/privileges</span>
+            <span class="card__repo card__repo--client">Klark</span>
+          </footer>
+        </div>
+      </article>
+
+      <article class="card" data-cat="landing" data-reveal data-tilt>
+        <div class="card__glow" aria-hidden="true"></div>
+        <div class="card__body">
+          <header class="card__top">
+            <span class="card__index" aria-hidden="true">17</span>
+            <span class="card__tag"><i aria-hidden="true"></i>Landing page</span>
+          </header>
+          <h3 class="card__title">
+            <a href="https://jnr-studio.vercel.app/klark/saint-valentin/" target="_blank" rel="noopener noreferrer" class="card__link">Privilèges — Saint-Valentin</a>
+          </h3>
+          <p class="card__desc">Édition spéciale Saint-Valentin du programme Privilèges. Même structure de conversion, habillage événementiel limité dans le temps.</p>
+          <ul class="chips"><li>HTML</li><li>CSS</li><li>JavaScript</li></ul>
+          <footer class="card__foot">
+            <span class="card__url">/klark/saint-valentin</span>
+            <span class="card__repo card__repo--client">Klark</span>
+          </footer>
+        </div>
+      </article>
+
+      <!-- ── Articles ── -->
+      <article class="card" data-cat="article" data-reveal data-tilt>
+        <div class="card__glow" aria-hidden="true"></div>
+        <div class="card__body">
+          <header class="card__top">
+            <span class="card__index" aria-hidden="true">18</span>
+            <span class="card__tag"><i aria-hidden="true"></i>Article</span>
+          </header>
+          <h3 class="card__title">
+            <a href="https://getklark.app/I-Spent-$2100-on-AI-Tools-Last-Year-Heres-What-I-Actually-Got" target="_blank" rel="noopener noreferrer" class="card__link">AI Tools — $2,100 par an</a>
+          </h3>
+          <p class="card__desc">Long-form content marketing en anglais : « I Spent $2,100 on AI Tools Last Year ». Article de fond avec storytelling, illustration et CTA lead magnet.</p>
+          <ul class="chips"><li>HTML</li><li>CSS</li><li>Rédaction EN</li></ul>
+          <footer class="card__foot">
+            <span class="card__url">getklark.app</span>
+            <span class="card__repo card__repo--client">Klark</span>
+          </footer>
+        </div>
+      </article>
+
+      <article class="card" data-cat="article" data-reveal data-tilt>
+        <div class="card__glow" aria-hidden="true"></div>
+        <div class="card__body">
+          <header class="card__top">
+            <span class="card__index" aria-hidden="true">19</span>
+            <span class="card__tag"><i aria-hidden="true"></i>Article</span>
+          </header>
+          <h3 class="card__title">
+            <a href="https://getklark.app/LIA-me-donnait-des-conseils-brillants-mais-pour-la-mauvaise-boite" target="_blank" rel="noopener noreferrer" class="card__link">L'IA hors contexte</a>
+          </h3>
+          <p class="card__desc">Article FR sur l'échec de l'IA en contexte inadapté. Contenu long-form avec angle personnel, mise en page magazine et CTA de téléchargement.</p>
+          <ul class="chips"><li>HTML</li><li>CSS</li><li>Rédaction FR</li></ul>
+          <footer class="card__foot">
+            <span class="card__url">getklark.app</span>
+            <span class="card__repo card__repo--client">Klark</span>
+          </footer>
+        </div>
+      </article>
+
+      <article class="card" data-cat="article" data-reveal data-tilt>
+        <div class="card__glow" aria-hidden="true"></div>
+        <div class="card__body">
+          <header class="card__top">
+            <span class="card__index" aria-hidden="true">20</span>
+            <span class="card__tag"><i aria-hidden="true"></i>Article</span>
+          </header>
+          <h3 class="card__title">
+            <a href="https://getklark.app/Javais-6-abonnements-IA-differents-et-zero-resultat-coherent-outil" target="_blank" rel="noopener noreferrer" class="card__link">Abonnements IA fragmentés</a>
+          </h3>
+          <p class="card__desc">Article FR sur la fragmentation des abonnements IA : « J'avais 6 abonnements IA différents et zéro résultat cohérent ». Angle audit + solution.</p>
+          <ul class="chips"><li>HTML</li><li>CSS</li><li>Rédaction FR</li></ul>
+          <footer class="card__foot">
+            <span class="card__url">getklark.app</span>
+            <span class="card__repo card__repo--client">Klark</span>
+          </footer>
+        </div>
+      </article>
+
+    </div>
+
+    <p class="projects__empty" id="projectsEmpty" hidden>Aucune réalisation dans cette catégorie.</p>
+  </section>
+
+  <!-- ── STUDIO ───────────────────────────────────────────────────────── -->
+  <section class="studio" id="studio">
+    <div class="studio__inner">
+      <div class="studio__head">
+        <p class="studio__eyebrow" data-reveal>Activité indépendante</p>
+        <h2 class="studio__name" data-split-words>JNR Studio</h2>
+        <p class="studio__tagline" data-reveal>Journey <span aria-hidden="true">•</span> News <span aria-hidden="true">•</span> Result</p>
+        <p class="studio__headline" data-reveal>Votre présence en ligne, <strong>conçue pour durer.</strong></p>
+        <p class="studio__lead" data-reveal>
+          Création de sites web sur-mesure pour auto-entrepreneurs, artisans et TPE/PME
+          — pensés, codés, livrés. Basé en Seine-et-Marne, j'interviens partout en France.
+        </p>
+      </div>
+
+      <ul class="studio__services">
+        <li data-reveal><b>01</b><span>Site vitrine</span><em>Présenter votre activité et attirer de nouveaux clients.</em></li>
+        <li data-reveal><b>02</b><span>Site e-commerce</span><em>Vendre vos produits ou services en ligne 24h/24.</em></li>
+        <li data-reveal><b>03</b><span>Landing page</span><em>Une page optimisée pour convertir vos visiteurs.</em></li>
+        <li data-reveal><b>04</b><span>Refonte de site</span><em>Moderniser l'existant sans tout reconstruire.</em></li>
+        <li data-reveal><b>05</b><span>Photographie pro</span><em>Des visuels de qualité pour le web et le print.</em></li>
+        <li data-reveal><b>06</b><span>Maintenance</span><em>Mises à jour, sauvegardes et suivi après livraison.</em></li>
+      </ul>
+
+      <div class="studio__cta" data-reveal>
+        <a class="btn btn--solid" href="https://jnr-studio.vercel.app/" target="_blank" rel="noopener noreferrer" data-magnetic>
+          <span>Voir le studio</span>
+          <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 12L12 4M12 4H5.5M12 4v6.5"/></svg>
+        </a>
+        <a class="btn btn--ghost" href="https://jnr-studio.vercel.app/tarifs" target="_blank" rel="noopener noreferrer" data-magnetic>
+          <span>Tarifs</span>
+        </a>
+        <a class="btn btn--ghost" href="https://jnr-studio.vercel.app/contact" target="_blank" rel="noopener noreferrer" data-magnetic>
+          <span>Demander un devis</span>
+        </a>
+      </div>
     </div>
   </section>
 
@@ -320,6 +629,12 @@
           Je porte une attention particulière à l'accessibilité, aux performances et aux détails
           d'animation qui rendent une interface agréable.
         </p>
+        <p class="about__text" data-reveal>
+          En parallèle de ma formation, je développe
+          <a href="https://jnr-studio.vercel.app/" target="_blank" rel="noopener noreferrer">JNR&nbsp;Studio</a>,
+          mon activité d'auto-entrepreneur. Les réalisations signées Klark ont été produites
+          lors de mon stage chez eux.
+        </p>
 
         <div class="skills">
           <div class="skills__col" data-reveal>
@@ -332,12 +647,21 @@
           </div>
           <div class="skills__col" data-reveal>
             <h3>Design</h3>
-            <ul><li>Figma</li><li>Design systems</li><li>Prototypage</li><li>UI / UX</li><li>Accessibilité</li></ul>
+            <ul><li>Figma</li><li>Design systems</li><li>Prototypage</li><li>UI / UX</li><li>Photographie</li><li>Accessibilité</li></ul>
           </div>
           <div class="skills__col" data-reveal>
             <h3>Outils</h3>
-            <ul><li>Git &amp; GitHub</li><li>Vercel</li><li>Docker</li><li>Framer Motion</li><li>Vite</li></ul>
+            <ul><li>Git &amp; GitHub</li><li>Vercel</li><li>Docker</li><li>Framer Motion</li><li>SEO</li></ul>
           </div>
+        </div>
+
+        <div class="timeline" data-reveal>
+          <h3>Formation</h3>
+          <ul>
+            <li><b>2026 – 2028</b><span>Master Web Éditorial &amp; Stratégie UX</span></li>
+            <li><b>2022 – 2026</b><span>BUT Informatique — IUT de Sénart-Fontainebleau</span></li>
+            <li><b>2025</b><span>Certification UX/UI Design — Skill4all × EFREI Paris</span></li>
+          </ul>
         </div>
       </div>
     </div>
@@ -350,21 +674,46 @@
     <h2 class="contact__title" data-split-words>Parlons de votre projet.</h2>
 
     <div class="contact__mail" data-reveal>
-      <a class="mail" href="mailto:clement.jannaire@gmail.com" data-hover-letters>clement.jannaire@gmail.com</a>
+      <a class="mail" href="mailto:clement.jannaire@outlook.com" data-hover-letters>clement.jannaire@outlook.com</a>
       <button class="copy" id="copyMail" type="button" data-magnetic
-              data-mail="clement.jannaire@gmail.com" aria-label="Copier l'adresse e-mail">
+              data-mail="clement.jannaire@outlook.com" aria-label="Copier l'adresse e-mail">
         <svg viewBox="0 0 16 16" aria-hidden="true"><rect x="5.5" y="5.5" width="8" height="8" rx="1.5"/><path d="M10.5 5.5v-1a1.5 1.5 0 0 0-1.5-1.5H4a1.5 1.5 0 0 0-1.5 1.5v5A1.5 1.5 0 0 0 4 11h1"/></svg>
         <span>Copier</span>
       </button>
     </div>
+
+    <div class="contact__routes">
+      <div class="route" data-reveal>
+        <h3>Un poste, une alternance</h3>
+        <p>Écrivez-moi directement, je réponds sous 24&nbsp;h ouvrées.</p>
+        <a class="linkline" href="mailto:clement.jannaire@outlook.com" data-magnetic>
+          <span>M'écrire</span>
+          <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 12L12 4M12 4H5.5M12 4v6.5"/></svg>
+        </a>
+      </div>
+      <div class="route" data-reveal>
+        <h3>Un projet web ou photo</h3>
+        <p>Passez par JNR&nbsp;Studio : devis gratuit sous 24&nbsp;h ouvrées.</p>
+        <a class="linkline" href="https://jnr-studio.vercel.app/contact" target="_blank" rel="noopener noreferrer" data-magnetic>
+          <span>Demander un devis</span>
+          <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 12L12 4M12 4H5.5M12 4v6.5"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <dl class="contact__info" data-reveal>
+      <div><dt>Téléphone</dt><dd><a href="tel:+33631890868">06 31 89 08 68</a></dd></div>
+      <div><dt>Localisation</dt><dd>Seine-et-Marne (77), Île-de-France</dd></div>
+      <div><dt>Disponibilité</dt><dd>Lun – Ven, 9h – 18h</dd></div>
+    </dl>
 
     <div class="contact__links" data-reveal>
       <a class="linkline" href="https://github.com/Clement77720" target="_blank" rel="noopener noreferrer" data-magnetic>
         <span>GitHub</span>
         <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 12L12 4M12 4H5.5M12 4v6.5"/></svg>
       </a>
-      <a class="linkline" href="https://www.linkedin.com/in/cl%C3%A9ment-jannaire" target="_blank" rel="noopener noreferrer" data-magnetic>
-        <span>LinkedIn</span>
+      <a class="linkline" href="https://jnr-studio.vercel.app/" target="_blank" rel="noopener noreferrer" data-magnetic>
+        <span>JNR Studio</span>
         <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 12L12 4M12 4H5.5M12 4v6.5"/></svg>
       </a>
     </div>
@@ -375,6 +724,7 @@
 <footer class="footer">
   <span>© <span id="year">2026</span> Clément Jannaire</span>
   <span class="footer__clock">Paris · <time id="clock">--:--:--</time></span>
+  <a class="footer__studio" href="https://jnr-studio.vercel.app/" target="_blank" rel="noopener noreferrer">JNR Studio ↗</a>
   <a class="footer__top" href="#top" data-magnetic>Haut de page ↑</a>
 </footer>
 
