@@ -189,28 +189,6 @@
     });
   }
 
-  /* ── Effet magnétique ─────────────────────────────────────────────── */
-
-  function initMagnetic() {
-    if (!finePointer || reduceMotion) return;
-
-    $$('[data-magnetic]').forEach((el) => {
-      const strength = 0.32;
-
-      el.addEventListener('pointermove', (e) => {
-        const r = el.getBoundingClientRect();
-        const dx = e.clientX - (r.left + r.width / 2);
-        const dy = e.clientY - (r.top + r.height / 2);
-        el.style.transform = `translate(${dx * strength}px, ${dy * strength}px)`;
-      });
-
-      el.addEventListener('pointerleave', () => {
-        el.style.transform = '';
-        el.style.transition = 'transform .5s cubic-bezier(.22,1,.36,1)';
-        setTimeout(() => { el.style.transition = ''; }, 500);
-      });
-    });
-  }
 
   /* ── Cartes : inclinaison 3D + projecteur ─────────────────────────── */
 
@@ -590,7 +568,6 @@
     initReveal();
     initLoader();
     initAurora();
-    initMagnetic();
     initTilt();
     initHeroSpotlight();
     initScramble();

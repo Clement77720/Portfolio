@@ -48,7 +48,6 @@ sites ne partagent pas de code.
 |---|---|
 | Écran de chargement (compteur + rideau) | `initLoader` |
 | Aurore animée sur canvas, réactive au pointeur | `initAurora` |
-| Boutons magnétiques | `initMagnetic` |
 | Cartes : inclinaison 3D, projecteur, parallaxe du contenu | `initTilt` |
 | Grille de points révélée par un projecteur | `initHeroSpotlight` |
 | Titres révélés ligne par ligne / mot par mot | `splitLines`, `splitWords` |
