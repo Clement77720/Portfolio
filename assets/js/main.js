@@ -50,8 +50,10 @@
   /* ── Apparitions au défilement ────────────────────────────────────── */
 
   function initReveal() {
-    // Cascade au sein d'un même groupe.
-    $$('.projects .card').forEach((el, i) => el.style.setProperty('--d', `${i * 70}ms`));
+    // Cascade au sein d'un même groupe. Plafonnée : avec 20 cartes, un
+    // décalage linéaire ferait attendre plus d'une seconde la dernière.
+    $$('.projects .card').forEach((el, i) =>
+      el.style.setProperty('--d', `${Math.min(i, 7) * 60}ms`));
     $$('.skills__col').forEach((el, i) => el.style.setProperty('--d', `${i * 80}ms`));
     $$('.hero [data-reveal]').forEach((el, i) => el.style.setProperty('--d', `${300 + i * 90}ms`));
 
@@ -315,6 +317,54 @@
     setTimeout(cycle, 2600);
   }
 
+  /* ── Filtrage des réalisations ────────────────────────────────────── */
+
+  function initFilters() {
+    const bar = $('#filters');
+    const grid = $('#projects');
+    if (!bar || !grid) return;
+
+    const empty = $('#projectsEmpty');
+    const count = $('#projectCount');
+    const cards = $$('.card[data-cat]', grid);
+    const buttons = $$('.filter', bar);
+    const FOLD = 260;   // doit rester aligné sur la transition de .is-filtered
+
+    bar.addEventListener('click', (e) => {
+      const btn = e.target.closest('.filter');
+      if (!btn) return;
+
+      const cat = btn.dataset.filter;
+      buttons.forEach((b) => {
+        const on = b === btn;
+        b.classList.toggle('is-active', on);
+        b.setAttribute('aria-pressed', String(on));
+      });
+
+      let shown = 0;
+      cards.forEach((card) => {
+        const match = cat === 'all' || card.dataset.cat === cat;
+
+        if (match) {
+          shown++;
+          card.hidden = false;
+          // Une carte jamais observée (hors écran au chargement) doit
+          // quand même apparaître une fois filtrée.
+          card.classList.add('is-in');
+          requestAnimationFrame(() => card.classList.remove('is-filtered'));
+        } else {
+          card.classList.add('is-filtered');
+          setTimeout(() => {
+            if (card.classList.contains('is-filtered')) card.hidden = true;
+          }, reduceMotion ? 0 : FOLD);
+        }
+      });
+
+      if (count) count.textContent = String(shown);
+      if (empty) empty.hidden = shown > 0;
+    });
+  }
+
   /* ── Compteurs animés ─────────────────────────────────────────────── */
 
   function initCounters() {
@@ -544,6 +594,7 @@
     initTilt();
     initHeroSpotlight();
     initScramble();
+    initFilters();
     initCounters();
     initMarquee();
     initScrollUI();
